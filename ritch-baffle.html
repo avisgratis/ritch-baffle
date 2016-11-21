@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <title>Ritch Baffle!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="ritch-baffle.js" async></script>
+    <script>
+        $(document).ready(function() {
+            $("#addNameButton").click(function(e) {
+                RitchBaffle.addName($("#name").val());
+                RitchBaffle.showNames();
+                e.preventDefault();
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="addNameSection">
+        <form>
+            <input id="name" type="text" />
+            <button id="addNameButton">Add!</button>
+        </form>
+    </div>
+</body>
