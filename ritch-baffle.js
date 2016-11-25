@@ -6,8 +6,10 @@ RitchBaffle = {
      * @param {string} name - The name to add.
      *
      */
-    addName: function(name) {
-        RitchBaffle.names.push(name);
+    addName: function(name, number) {
+        for (var i=0; i < number; i++) {
+            RitchBaffle.names.push(name);
+        }
     },
 
     /**
@@ -25,7 +27,13 @@ RitchBaffle = {
      *
      */
     pickName: function() {
-        //TODO: implement this
+        if (RitchBaffle.names.length === 0) {
+            alert("Ticket pool is empty");
+        } else {
+            var random_int = Math.floor(Math.random() * RitchBaffle.names.length);
+            var winner = RitchBaffle.names.splice(random_int, 1);
+            alert(winner[0]);
+        }
     }
     
 }

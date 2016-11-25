@@ -7,8 +7,12 @@
     <script>
         $(document).ready(function() {
             $("#addNameButton").click(function(e) {
-                RitchBaffle.addName($("#name").val());
+                RitchBaffle.addName($("#name").val(), $("#tickets").val());
                 RitchBaffle.showNames();
+                e.preventDefault();
+            });
+            $("#drawNameButton").click(function(e) {
+                RitchBaffle.pickName();
                 e.preventDefault();
             });
         })
@@ -18,7 +22,13 @@
     <div id="addNameSection">
         <form>
             <input id="name" type="text" />
+            <input id="tickets" type="number" />
             <button id="addNameButton">Add!</button>
+        </form>
+    </div>
+    <div id="drawNameSection">
+        <form>
+            <button id="drawNameButton">Draw!</button>
         </form>
     </div>
 </body>
