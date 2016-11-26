@@ -2,8 +2,14 @@
 <html>
 <head>
     <title>Ritch Baffle!</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="ritch-baffle.js"></script>
+
     <script>
         $(document).ready(function() {
             $("#addNameButton").click(function(e) {
@@ -19,16 +25,46 @@
     </script>
 </head>
 <body>
-    <div id="addNameSection">
-        <form>
-            <input id="name" type="text" />
-            <input id="tickets" type="number" />
-            <button id="addNameButton">Add!</button>
-        </form>
-    </div>
-    <div id="drawNameSection">
-        <form>
-            <button id="drawNameButton">Draw!</button>
-        </form>
+    <div class="container-fluid">
+        <div class="row ">
+        <div class="col-md-9">
+
+                <div class="page-header">
+                    <h1 align="center">Ritch Baffle!</h1>
+                </div>
+                <img src="img/placeholder.jpg" class="center-block img-responsive img-circle" style="max-height:500px;">
+                <form>
+                    <button id="drawNameButton" class="top-buffer center-block btn btn-default btn-lg">Draw!</button>
+                </form>
+        </div>
+
+        <div class="col-md-3 top-buffer">
+
+                <div class="text-center">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="tickets">No of Tickets</label>
+                            <input id="tickets" type="number" class="form-control" />
+                        </div>
+                        <button id="addNameButton" class="btn btn-default">Add!</button>
+                    </form>
+                </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Tickets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        </div>
     </div>
 </body>
