@@ -4,6 +4,7 @@ RitchBaffle = {
     /**
      * Add a name to the internal array.
      * @param {string} name - The name to add.
+     * @param {number} number - Number of tickets to add for that name.
      *
      */
     addName: function(name, number) {
@@ -14,11 +15,29 @@ RitchBaffle = {
 
     /**
      * Update the UI to show the current names.
+     * @param {obj} element - Jquery object to append the names to.
      *
      */    
-    showNames: function() {
-        //TODO: make this do something nicer than just an alert
-        alert(RitchBaffle.names);
+    showNames: function(element) {
+        element.html("");
+        
+        var namesMap = {};
+        
+        $.each(RitchBaffle.names, function(index, name){
+            if(!namesMap[name]){
+                namesMap[name] = 1;
+            }
+            else {
+                namesMap[name] = namesMap[name] + 1;
+            }
+        });
+        
+        $.each(namesMap, function(name, count){
+            var tr = $("<tr/>");
+            $("<td/>").text(name).appendTo(tr);
+            $("<td/>").text(count).appendTo(tr);           
+            element.append(tr);
+        });
     },
     
     /**
