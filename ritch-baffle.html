@@ -12,11 +12,15 @@
 
     <script>
         $(document).ready(function() {
+        
+            // Click handler for Add Name button
             $("#addNameButton").click(function(e) {
                 RitchBaffle.addName($("#name").val(), $("#tickets").val());
                 RitchBaffle.showNames($("#tickets-table tbody"));
                 e.preventDefault();
             });
+            
+            // Click handler for Draw Name button
             $("#drawNameButton").click(function(e) {
             
                 $("#main-image").addClass("spinning");
@@ -27,22 +31,34 @@
                 var rand1 = Math.ceil(Math.random() * 5);
                 var rand2 = Math.ceil(Math.random() * 5);
                 var runtime = (rand1 + rand2) * 500;
-                console.log(runtime);
                
                 var questionMarkAdder = window.setInterval(function(){
                     $("#chosenName").text($("#chosenName").text() + "?")
                 }, 500);
                 
-                window.setTimeout(function() {
+                window.setTimeout(function(e) {                    
                     window.clearInterval(questionMarkAdder);                    
+                    var name = RitchBaffle.pickName();
+                    
                     $("#main-image").removeClass("spinning");
-                    $("#chosenName").text(RitchBaffle.pickName());
+                    $("#main-image").attr("src", "img/" + RitchBaffle.getPicture(name));
+                    $("#chosenName").text(name);
+                    
                     RitchBaffle.showNames($("#tickets-table tbody"));
                     $("#drawNameButton").prop("disabled", false);                    
                     $("#chosenName").addClass("flash");
                 }, runtime);
                                
                 e.preventDefault();
+            });
+            
+            // CLick handler for delete buttons in the table
+            $("#tickets-table").on("click", ".delete", function(e){
+                if(window.confirm("Delete " + $(this).data("name") + "?")){
+                    RitchBaffle.removeName($(this).data("name"));
+                    RitchBaffle.showNames($("#tickets-table tbody"));
+                    e.preventDefault();
+                }
             });
         })
     </script>
@@ -55,7 +71,7 @@
                 <div class="page-header">
                     <h1 align="center">Ritch Baffle!</h1>
                 </div>
-                <img src="img/placeholder.jpg" id="main-image" class="center-block img-responsive img-circle" style="max-height:500px;">
+                <img src="img/MasterCheese.png" id="main-image" class="center-block img-responsive img-circle" style="max-height:128px;">
                 <h1 align="center" id="chosenName">&nbsp;</h1>
                 <form>
                     <button id="drawNameButton" class="top-buffer center-block btn btn-default btn-lg">Draw!</button>
@@ -79,10 +95,16 @@
                 </div>
 
             <table class="table table-striped" id="tickets-table">
+                <colgroup>
+                    <col class="col-md-5">
+                    <col class="col-md-5">
+                    <col class="col-md-1">
+                </colgroup>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Tickets</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
