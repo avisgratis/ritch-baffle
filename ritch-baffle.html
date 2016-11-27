@@ -18,8 +18,30 @@
                 e.preventDefault();
             });
             $("#drawNameButton").click(function(e) {
-                RitchBaffle.pickName();
-                RitchBaffle.showNames($("#tickets-table tbody"));
+            
+                $("#main-image").addClass("spinning");
+                $("#drawNameButton").prop("disabled", true);
+                $("#chosenName").text("?");
+                $("#chosenName").removeClass("flash");
+                
+                var rand1 = Math.ceil(Math.random() * 5);
+                var rand2 = Math.ceil(Math.random() * 5);
+                var runtime = (rand1 + rand2) * 500;
+                console.log(runtime);
+               
+                var questionMarkAdder = window.setInterval(function(){
+                    $("#chosenName").text($("#chosenName").text() + "?")
+                }, 500);
+                
+                window.setTimeout(function() {
+                    window.clearInterval(questionMarkAdder);                    
+                    $("#main-image").removeClass("spinning");
+                    $("#chosenName").text(RitchBaffle.pickName());
+                    RitchBaffle.showNames($("#tickets-table tbody"));
+                    $("#drawNameButton").prop("disabled", false);                    
+                    $("#chosenName").addClass("flash");
+                }, runtime);
+                               
                 e.preventDefault();
             });
         })
@@ -33,7 +55,8 @@
                 <div class="page-header">
                     <h1 align="center">Ritch Baffle!</h1>
                 </div>
-                <img src="img/placeholder.jpg" class="center-block img-responsive img-circle" style="max-height:500px;">
+                <img src="img/placeholder.jpg" id="main-image" class="center-block img-responsive img-circle" style="max-height:500px;">
+                <h1 align="center" id="chosenName">&nbsp;</h1>
                 <form>
                     <button id="drawNameButton" class="top-buffer center-block btn btn-default btn-lg">Draw!</button>
                 </form>

@@ -1,1 +1,37 @@
+body {
+    font-family: Calibri, sans-serif;
+}
+
 .top-buffer { margin-top:20px; }
+
+.spinning {
+    animation:spin 0.5s linear infinite;
+}
+
+#chosenName.flash {
+    color: #000000;
+    animation: flash 1s linear;
+}
+
+#chosenName {
+    font-size: 60px;
+    min-height: 110px;
+}
+
+@keyframes spin { 100% { transform:rotate(360deg); } }
+
+@keyframes flash {
+    0% {
+        font-size: 60px;
+        color: #c417b3; 
+    }
+    
+    10% {        
+        font-size: 100px;
+    }
+ 
+    100% {
+        font-size: 60px;
+        color: #000000;
+    }        
+}

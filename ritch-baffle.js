@@ -47,11 +47,11 @@ RitchBaffle = {
      */
     pickName: function() {
         if (RitchBaffle.names.length === 0) {
-            alert("Ticket pool is empty");
+            return("Ticket pool is empty");
         } else {
             var random_int = Math.floor(Math.random() * RitchBaffle.names.length);
             var winner = RitchBaffle.names.splice(random_int, 1);
-            alert(winner[0]);
+            return(winner[0]);
         }
     }
     
