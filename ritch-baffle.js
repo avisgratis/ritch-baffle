@@ -1,5 +1,6 @@
 RitchBaffle = {
     names: [],
+    counter: 0,
     
     /**
      * Add a name to the internal array.
@@ -70,6 +71,7 @@ RitchBaffle = {
      *
      */
     pickName: function() {
+        RitchBaffle.counter++;
         if (RitchBaffle.names.length === 0) {
             return("Ticket pool is empty");
         } else {
