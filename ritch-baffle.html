@@ -14,6 +14,10 @@
         $(document).ready(function() {
         
             var moonShown = false;
+            
+            
+            RitchBaffle.load();
+            RitchBaffle.showNames($("#tickets-table tbody"));
         
             // Click handler for Add Name button
             $("#addNameButton").click(function(e) {

@@ -12,6 +12,7 @@ RitchBaffle = {
         for (var i=0; i < number; i++) {
             RitchBaffle.names.push(name);
         }
+        RitchBaffle.store();
     },
     
     /**
@@ -27,6 +28,7 @@ RitchBaffle = {
             }
         });
         RitchBaffle.names = newArray;
+        RitchBaffle.store();
     },
 
     /**
@@ -77,8 +79,30 @@ RitchBaffle = {
         } else {
             var random_int = Math.floor(Math.random() * RitchBaffle.names.length);
             var winner = RitchBaffle.names.splice(random_int, 1);
+            RitchBaffle.store();
             return(winner[0]);
         }
+    },
+    
+    /**
+     * Store names to localStorage.
+     *
+     */
+    store: function() {
+        localStorage.setItem("names", JSON.stringify(RitchBaffle.names));
+    },
+    
+    /**
+     * Load names from localStorage.
+     *
+     */
+    load: function() {
+        names = JSON.parse(localStorage.getItem("names"));
+        if(names == undefined || names == null) {
+            names = [];
+        }
+        
+        RitchBaffle.names = names;
     },
     
     /**
@@ -103,8 +127,6 @@ RitchBaffle = {
             case "doctorb":
             case "doctorbeard":
             case "doctorbread":
-            case "germanguy":
-            case "adolf":
                 return "DoctorBeard.jpg";
             case "ellie":
             case "el":
